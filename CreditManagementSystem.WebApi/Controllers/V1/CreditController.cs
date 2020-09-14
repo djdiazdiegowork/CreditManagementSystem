@@ -7,6 +7,7 @@ using CreditManagementSystem.Domain.ComandCredit;
 using CreditManagementSystem.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.WebApi.Controllers.V1
@@ -37,7 +38,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<Response<IEnumerable<CreditCreateResultDto>>>> Get()
         {
             var result = await this._creditService.GetAll<CreditCreateResultDto>();
 
@@ -55,7 +56,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreditCreateDto dto)
+        public async Task<ActionResult<Response<IEnumerable<CreditCreateResultDto>>>> Post([FromBody] CreditCreateDto dto)
         {
             var command = _mapper.Map(dto, new CreditCreateCommand());
 

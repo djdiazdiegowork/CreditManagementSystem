@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Loader;
 
 namespace CreditManagementSystem.Common.Extension
 {
-    public static class GetEntityTypesExtension
+    public static class TypeExtension
     {
         public static IEnumerable<Type> GetEntityTypes(this Type type)
         {
