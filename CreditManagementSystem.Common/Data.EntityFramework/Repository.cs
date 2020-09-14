@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CreditManagementSystem.Common.Data
+namespace CreditManagementSystem.Common.Data.EntityFramework
 {
     public class Repository<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class, IEntity

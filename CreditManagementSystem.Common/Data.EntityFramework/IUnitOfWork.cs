@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace CreditManagementSystem.Common.Data
+namespace CreditManagementSystem.Common.Data.EntityFramework
 {
     public interface IUnitOfWork
     {

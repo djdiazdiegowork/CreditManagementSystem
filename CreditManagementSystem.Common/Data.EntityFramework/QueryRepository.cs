@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace CreditManagementSystem.Common.Data
+namespace CreditManagementSystem.Common.Data.EntityFramework
 {
     public class QueryRepository<TEntity, TContext> : IQueryRepository<TEntity>
       where TEntity : class, IEntity

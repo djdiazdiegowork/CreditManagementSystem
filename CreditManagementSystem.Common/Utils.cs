@@ -1,4 +1,5 @@
 ﻿using CreditManagementSystem.Common.Data;
+using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -15,7 +16,7 @@ namespace CreditManagementSystem.Common
     {
         public static async Task ApplySeed(IServiceProvider provider)
         {
-            var seedTypes = typeof(ISeed).GetEntityTypes();
+            var seedTypes = typeof(ISeed<>).GetEntityTypes();
 
             foreach (var resultTask in from seedType in seedTypes
                                        let entityType = seedType.BaseType.GenericTypeArguments

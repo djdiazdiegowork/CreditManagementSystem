@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace CreditManagementSystem.Common.Data
+namespace CreditManagementSystem.Common.Data.EntityFramework
 {
     public abstract class Seed<TEntity> : ISeed<TEntity> where TEntity : class, IEnumeration
     {

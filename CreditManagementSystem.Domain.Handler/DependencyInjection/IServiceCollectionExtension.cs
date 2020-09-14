@@ -7,7 +7,7 @@ namespace CreditManagementSystem.Domain.Handler.DependencyInjection
 {
     public static class IServiceCollectionExtenssion
     {
-        public static void AddServicesAndCommands(this IServiceCollection services)
+        public static void AddDomainHandlerServices(this IServiceCollection services)
         {
             services.AddServicesHandler(typeof(IService).GetEntityTypes());
             services.AddCommandHandler(typeof(ICommand).GetEntityTypes());

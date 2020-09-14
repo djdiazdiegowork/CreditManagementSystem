@@ -6,7 +6,7 @@ namespace CreditManagementSystem.Common.Domain.Handler
     {
         protected CommandValidator()
         {
-            this.CascadeMode = FluentValidation.CascadeMode.Stop;
+            this.CascadeMode = CascadeMode.Stop;
         }
     }
 }

@@ -1,6 +1,5 @@
 using AutoMapper;
 using CreditManagementSystem.Common;
-using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Data.EntityFramework;
 using CreditManagementSystem.Data.EntityFramework.DependencyInjection;
 using CreditManagementSystem.Domain.Handler.DependencyInjection;
@@ -10,7 +9,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +16,6 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -37,9 +34,9 @@ namespace CreditManagementSystem.WebApi
         {
             string connectionStrings = this.Configuration.GetConnectionString("CMS_Api_Main");
 
-            services.AddUseMySqlServer(connectionStrings);
+            services.AddDataEFServices(connectionStrings);
 
-            services.AddServicesAndCommands();
+            services.AddDomainHandlerServices();
 
             services.AddControllers(options =>
             {

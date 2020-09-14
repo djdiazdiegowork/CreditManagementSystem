@@ -253,16 +253,15 @@ namespace CreditManagementSystem.Common.Extension
 
             foreach (var type in types)
             {
-               modelBuilder.Entity(type);
+                modelBuilder.Entity(type);
             }
 
             var assemblyTypes = Utils.GetTypesFromAssembly();
 
             var baseType = assemblyTypes
                 .Where(t => t.IsClass && t.IsAbstract && t.IsGenericType
-                    && t.IsTypeDefinition && t.GetInterfaces()
-                        .Any(i => i.IsGenericType
-                            && i.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>)))
+                    && t.IsTypeDefinition && t.GetInterfaces().Any(i => i.IsGenericType
+                        && i.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>)))
                 .First();
 
             modelBuilder.ApplyConfigurationsFromAssembly(baseType.Assembly, t => t.IsClass && !t.IsAbstract);
