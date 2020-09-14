@@ -4,7 +4,6 @@ namespace CreditManagementSystem.Common.Data
 {
     public interface ISeed
     {
-        public string GetNameSeedAsync => nameof(ISeed<IEntity>.SeedAsync);
     }
 
     public interface ISeed<TEntity> : ISeed where TEntity : class, IEntity

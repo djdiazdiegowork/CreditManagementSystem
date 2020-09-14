@@ -1,5 +1,6 @@
 ﻿using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Extension;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Collections.Generic;
@@ -12,53 +13,44 @@ namespace CreditManagementSystem.Common
 {
     public static class Utils
     {
-        public static string GetNameOfSeedMethod => nameof(ISeed<IEntity>.SeedAsync);
-
         public static async Task ApplySeed(IServiceProvider provider)
         {
             var seedTypes = typeof(ISeed).GetEntityTypes();
 
-            foreach (var seedType in seedTypes)
+            foreach (var resultTask in from seedType in seedTypes
+                                       let entityType = seedType.BaseType.GenericTypeArguments
+                                       let parameters = new[] {
+                                           provider.GetService(typeof(IQueryRepository<>).MakeGenericType(entityType)),
+                                           provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
+                                           provider.GetService(typeof(IUnitOfWork))
+                                       }
+                                       let methodInfo = seedType.GetMethod(nameof(ISeed<IEntity>.SeedAsync))
+                                       let instance = Activator.CreateInstance(seedType)
+                                       let resultTask = (Task)methodInfo.Invoke(instance, parameters)
+                                       select resultTask)
             {
-                var entityType = seedType.BaseType.GenericTypeArguments;
-
-                var parameters = new[] {
-                    provider.GetService(typeof(IQueryRepository<>).MakeGenericType(entityType)),
-                    provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
-                    provider.GetService(typeof(IUnitOfWork))
-                };
-
-                var methodInfo = seedType.GetMethod(GetNameOfSeedMethod);
-
-                var instance = Activator.CreateInstance(seedType);
-
-                var resultTask = (Task)methodInfo.Invoke(instance, parameters);
-
                 await resultTask;
             }
         }
 
-        public static List<Type> GetTypesFromAssembly()
+        public static async Task ApplyPenndingMigrations(DbContext dbContext)
         {
-            var types = new List<Type>();
+            var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
 
+            if (pendingMigrations.Any())
+                await dbContext.Database.MigrateAsync();
+        }
+
+        public static IEnumerable<Type> GetTypesFromAssembly()
+        {
             var current = Directory.GetCurrentDirectory();
-
             var parent = Directory.GetParent(current);
-
             var directories = parent.GetDirectories().Where(d => d.Name.Contains(parent.Name));
 
-            foreach (var directory in directories)
-            {
-                var assemblyTypes = Assembly.Load(directory.Name).GetTypes();
-
-                foreach (var type in assemblyTypes)
-                {
-                    types.Add(type);
-                }
-            }
-
-            return types;
+            return from directory in directories
+                   let assemblyTypes = Assembly.Load(directory.Name).GetTypes()
+                   from type in assemblyTypes
+                   select type;
         }
 
         public static ValueConverter<Guid, string> ConvertGuidToString()
@@ -66,5 +58,4 @@ namespace CreditManagementSystem.Common
             return new ValueConverter<Guid, string>(u => u.ToString("N"), u => Guid.Parse(u));
         }
     }
-
 }

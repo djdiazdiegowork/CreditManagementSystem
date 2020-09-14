@@ -10,23 +10,34 @@ namespace CreditManagementSystem.Common.Data
         public virtual async Task SeedAsync(IQueryRepository<TEntity> queryRepository, IRepository<TEntity> repository, IUnitOfWork unitOfWork)
         {
             var entities = typeof(TEntity).GetFields(BindingFlags.Public | BindingFlags.Static).Select(f => (TEntity)f.GetValue(f));
+            var propertiesName = typeof(TEntity).GetProperties().Where(p => p.Name != nameof(IEntity.ID)).Select(p => p.Name);
 
             var dbEntities = await queryRepository.FindAll().ToArrayAsync();
 
-            foreach (var dbEntity in dbEntities)
+            foreach (var (dbEntity, entity) in from dbEntity in dbEntities
+                                               let entity = entities.FirstOrDefault(entity => entity.ID.Equals(dbEntity.ID))
+                                               select (dbEntity, entity))
             {
-                if (!entities.Any(p => dbEntity.ID.Equals(p.ID) && dbEntity.Name.Equals(p.Name)))
+                if (entity != null)
+                {
+                    foreach (var (propertyName, value) in from propertyName in propertiesName
+                                                          let value = entity.GetType().GetProperty(propertyName).GetValue(entity)
+                                                          select (propertyName, value))
+                    {
+                        dbEntity.GetType().GetProperty(propertyName).SetValue(dbEntity, value);
+                    }
+
+                    repository.Update(dbEntity);
+                }
+                else
                 {
                     repository.Delete(dbEntity);
                 }
             }
 
-            foreach (var entity in entities)
+            foreach (var entity in entities.Where(entity => !dbEntities.Any(dbEntity => dbEntity.ID.Equals(entity.ID))))
             {
-                if (!dbEntities.Any(p => entity.ID.Equals(p.ID) && entity.Name.Equals(p.Name)))
-                {
-                    repository.Add(entity);
-                }
+                repository.Add(entity);
             }
 
             await unitOfWork.SaveChangesAsync(new System.Threading.CancellationToken());

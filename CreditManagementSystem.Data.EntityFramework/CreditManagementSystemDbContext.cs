@@ -1,6 +1,4 @@
-﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Extension;
-using CreditManagementSystem.Data.EntityFramework.Configuration;
+﻿using CreditManagementSystem.Common.Extension;
 using Microsoft.EntityFrameworkCore;
 
 namespace CreditManagementSystem.Data.EntityFramework
@@ -11,24 +9,17 @@ namespace CreditManagementSystem.Data.EntityFramework
         public CreditManagementSystemDbContext(DbContextOptions<CreditManagementSystemDbContext> options)
             : base(options)
         {
-
+            this.ChangeTracker.LazyLoadingEnabled = false;
+            //this.ChangeTracker.AutoDetectChangesEnabled = false;
+            //this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var baseType = typeof(IEntity);
-            var types = baseType.GetEntityTypes();
+            modelBuilder.AddEntities();
+            //modelBuilder.UsePropertyAccessMode(PropertyAccessMode.Field);
 
-            foreach (var type in types)
-            {
-                modelbuilder.Entity(type);
-            }
-
-            baseType = typeof(CreditManagementSystemEntityTypeBuilder<>);
-
-            modelbuilder.ApplyConfigurationsFromAssembly(baseType.Assembly, t => t.IsClass && !t.IsAbstract );
-
-            base.OnModelCreating(modelbuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IEnumeration : IEntity
     {
-        public string Name { get; set; }
+        string Name { get; set; }
     }
 }

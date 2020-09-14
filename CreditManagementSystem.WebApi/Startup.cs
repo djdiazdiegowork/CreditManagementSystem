@@ -1,5 +1,7 @@
 using AutoMapper;
 using CreditManagementSystem.Common;
+using CreditManagementSystem.Common.Data;
+using CreditManagementSystem.Data.EntityFramework;
 using CreditManagementSystem.Data.EntityFramework.DependencyInjection;
 using CreditManagementSystem.Domain.Handler.DependencyInjection;
 using CreditManagementSystem.WebApi.Filters;
@@ -8,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -37,27 +41,33 @@ namespace CreditManagementSystem.WebApi
 
             services.AddServicesAndCommands();
 
-            services.AddControllers(options => {
+            services.AddControllers(options =>
+            {
                 options.Filters.Add(typeof(ValidationActionModelAttribute));
             })
                 .AddDataAnnotationsLocalization()
-                .AddNewtonsoftJson(options => {
+                .AddNewtonsoftJson(options =>
+                {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 })
-                .AddFluentValidation(options => {
+                .AddFluentValidation(options =>
+                {
                     options.RegisterValidatorsFromAssemblyContaining<Startup>();
                 });
 
-            services.Configure<RouteOptions>(options => {
+            services.Configure<RouteOptions>(options =>
+            {
                 options.LowercaseUrls = true;
             });
 
-            services.AddVersionedApiExplorer(options => {
+            services.AddVersionedApiExplorer(options =>
+            {
                 options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl = true;
             });
 
-            services.AddApiVersioning(options => {
+            services.AddApiVersioning(options =>
+            {
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.ReportApiVersions = true;
@@ -65,7 +75,8 @@ namespace CreditManagementSystem.WebApi
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddSwaggerGen(options => {
+            services.AddSwaggerGen(options =>
+            {
                 options.CustomSchemaIds(t => t.FullName);
                 options.DescribeAllParametersInCamelCase();
 
@@ -73,16 +84,19 @@ namespace CreditManagementSystem.WebApi
 
                 foreach (var version in versions)
                 {
-                    options.SwaggerDoc(version, new OpenApiInfo {
+                    options.SwaggerDoc(version, new OpenApiInfo
+                    {
                         Version = version,
                         Title = "CreditManagementSystem API",
                         Description = "System for the control and management of credits",
                         TermsOfService = new Uri("https://creditmanagementsystem/termsOfService"),
-                        Contact = new OpenApiContact {
+                        Contact = new OpenApiContact
+                        {
                             Name = "Dayron Jesús Díaz Diego",
                             Email = "dj.diazdiego@gmail.com",
                         },
-                        License = new OpenApiLicense {
+                        License = new OpenApiLicense
+                        {
                             Name = "License Name",
                             Url = new Uri("https://creditmanagementsystem/licence")
                         }
@@ -106,18 +120,24 @@ namespace CreditManagementSystem.WebApi
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
             });
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CreditManagementSystem API V1");
                 c.RoutePrefix = string.Empty;
             });
 
-
-            Task.Run(async () => await Utils.ApplySeed(provider)).Wait();
+            Task.Run(async () =>
+            {
+                using CreditManagementSystemDbContext dbContext = provider.GetService<CreditManagementSystemDbContext>();
+                await Utils.ApplyPenndingMigrations(dbContext);
+                await Utils.ApplySeed(provider);
+            }).Wait();
         }
     }
 }
