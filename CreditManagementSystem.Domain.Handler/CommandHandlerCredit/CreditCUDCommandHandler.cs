@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using CreditManagementSystem.Client.Model.Credit;
-using CreditManagementSystem.Common.Data.EntityFramework;
+using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Domain.Handler;
+using CreditManagementSystem.Common.Extension;
 using CreditManagementSystem.Common.Response;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
 using CreditManagementSystem.Data.Model;

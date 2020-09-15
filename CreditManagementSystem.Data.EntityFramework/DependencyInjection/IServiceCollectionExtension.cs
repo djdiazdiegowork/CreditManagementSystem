@@ -1,4 +1,5 @@
-﻿using CreditManagementSystem.Common.Data.EntityFramework;
+﻿using CreditManagementSystem.Common.Data;
+using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Extension;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
 using Microsoft.EntityFrameworkCore;

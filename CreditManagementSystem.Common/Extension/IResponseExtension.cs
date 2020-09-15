@@ -1,6 +1,7 @@
 ﻿using CreditManagementSystem.Common.Domain;
+using CreditManagementSystem.Common.Response;
 
-namespace CreditManagementSystem.Common.Response
+namespace CreditManagementSystem.Common.Extension
 {
     public static class IResponseExtension
     {

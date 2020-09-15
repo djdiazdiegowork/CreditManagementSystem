@@ -16,7 +16,7 @@ namespace CreditManagementSystem.Common.Extension
                 assemblyTypes.Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces()
                     .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == type));
 
-            return types;
+            return types.ToArray();
         }
     }
 }

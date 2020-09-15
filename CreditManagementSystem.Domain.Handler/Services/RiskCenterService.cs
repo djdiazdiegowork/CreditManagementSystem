@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CreditManagementSystem.Common.Data.EntityFramework;
+using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Data.Model;
 using CreditManagementSystem.Domain.Services;
 using Microsoft.EntityFrameworkCore;

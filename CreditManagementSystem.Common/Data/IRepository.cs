@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CreditManagementSystem.Common.Data.EntityFramework
+namespace CreditManagementSystem.Common.Data
 {
     public interface IRepository<TEntity>
         where TEntity : class

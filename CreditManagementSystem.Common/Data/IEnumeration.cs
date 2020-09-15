@@ -1,7 +1,9 @@
-﻿namespace CreditManagementSystem.Common.Data
+﻿using System;
+
+namespace CreditManagementSystem.Common.Data
 {
-    public interface IEnumeration : IEntity
+    public interface IEnumeration : IEntity, IComparable
     {
-        string Name { get; set; }
+        string Name { get; }
     }
 }

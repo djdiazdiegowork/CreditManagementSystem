@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace CreditManagementSystem.Common.Data.EntityFramework
+namespace CreditManagementSystem.Common.Data
 {
     public interface IQueryRepository<TEntity> where TEntity : class, IEntity
     {
