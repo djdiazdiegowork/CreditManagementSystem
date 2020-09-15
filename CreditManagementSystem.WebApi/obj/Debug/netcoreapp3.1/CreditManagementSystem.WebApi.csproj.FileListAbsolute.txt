@@ -4,7 +4,6 @@ C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebAp
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\obj\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.csproj.CoreCompileInputs.cache
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\obj\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\obj\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.exe
@@ -92,3 +91,4 @@ C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebAp
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\SequentialGuid.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
