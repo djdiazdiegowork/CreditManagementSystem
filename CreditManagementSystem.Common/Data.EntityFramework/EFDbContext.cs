@@ -20,14 +20,14 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
             base.OnModelCreating(modelBuilder);
         }
 
-        public sealed class EFReadDbContext : EFDbContext
-        {
-            public EFReadDbContext([NotNull] DbContextOptions<EFReadDbContext> options) : base(options)
-            {
-                this.ChangeTracker.AutoDetectChangesEnabled = false;
-                this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-            }
-        }
+        //public sealed class EFReadDbContext : EFDbContext
+        //{
+        //    public EFReadDbContext([NotNull] DbContextOptions<EFReadDbContext> options) : base(options)
+        //    {
+        //        this.ChangeTracker.AutoDetectChangesEnabled = false;
+        //        this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        //    }
+        //}
 
         //public sealed class EFWriteDbContext : EFDbContext
         //{
