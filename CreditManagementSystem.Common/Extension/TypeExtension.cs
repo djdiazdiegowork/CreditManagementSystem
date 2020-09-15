@@ -10,10 +10,13 @@ namespace CreditManagementSystem.Common.Extension
         {
             var assemblyTypes = Utils.GetTypesFromAssembly();
 
-            var types = assemblyTypes.Where(t => !t.IsAbstract && t.IsClass &&
-                        t.GetInterfaces().Contains(type));
+            var types = !(type.IsGenericType && type.IsTypeDefinition) ?
+                assemblyTypes.Where(t => t.IsClass && !t.IsAbstract &&
+                    t.GetInterfaces().Contains(type)) :
+                assemblyTypes.Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces()
+                    .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == type));
 
-            return types;
+            return types.ToArray();
         }
     }
 }

@@ -26,11 +26,12 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<Response<IEnumerable<CreditStatusDto>>>> Get()
         {
             var result = await this._creditStatusService.GetAll<CreditStatusDto>();
 
-            var response = new Response<IEnumerable<CreditStatusDto>> {
+            var response = new Response<IEnumerable<CreditStatusDto>>
+            {
                 Body = result,
                 Code = Response.StatusCode
             };

@@ -3,5 +3,7 @@
     public interface IEntity
     {
         object ID { get; }
+
+        bool IsTransient();
     }
 }
