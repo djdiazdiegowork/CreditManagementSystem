@@ -126,6 +126,7 @@ namespace CreditManagementSystem.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CreditManagementSystem API V1");
+                c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
                 c.RoutePrefix = string.Empty;
             });
 
