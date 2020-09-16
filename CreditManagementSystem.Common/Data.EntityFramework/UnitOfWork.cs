@@ -18,7 +18,7 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
 
         public int SaveChanges()
         {
-            return this.SaveChangesAsync(new CancellationToken()).Result;
+            return this.SaveChangesAsync().Result;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

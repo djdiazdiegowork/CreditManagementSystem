@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Common.Data.EntityFramework
@@ -16,78 +15,50 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
             this._context = context;
         }
 
-        public void Add(TEntity entity)
+        public EntityState Add(TEntity entity)
         {
-            this._context.Set<TEntity>().Add(entity);
+            return (EntityState)this._context.Set<TEntity>().Add(entity).State;
         }
 
-        public void Add(params TEntity[] entities)
-        {
-            this._context.Set<TEntity>().AddRange(entities);
-        }
-
-        public void Add(IEnumerable<TEntity> entities)
+        public void AddRange(params TEntity[] entities)
         {
             this._context.Set<TEntity>().AddRange(entities);
         }
 
-        public void Update(TEntity entity)
+        public async Task<EntityState> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
-            this._context.Set<TEntity>().Attach(entity);
-            this._context.Entry(entity).State = EntityState.Modified;
+            return (EntityState)(await this._context.Set<TEntity>().AddAsync(entity, cancellationToken)).State;
         }
 
-        public void Update(params TEntity[] entities)
+        public Task AddRangeAsync(CancellationToken cancellationToken = default, params TEntity[] entities)
         {
-            Update(entities.ToList());
+            return this._context.Set<TEntity>().AddRangeAsync(entities);
         }
 
-        public void Update(IEnumerable<TEntity> entities)
+        public EntityState Update(TEntity entity)
         {
-            this._context.Set<TEntity>().AttachRange(entities);
-
-            foreach (var entity in entities)
-            {
-                this._context.Entry(entity).State = EntityState.Modified;
-            }
+            return (EntityState)this._context.Set<TEntity>().Update(entity).State;
         }
 
-        public async Task Delete(object id)
+        public void UpdateRange(params TEntity[] entities)
+        {
+            this._context.Set<TEntity>().UpdateRange(entities);
+        }
+
+        public async Task<EntityState> DeleteByIDAsync(object id)
         {
             var entity = await this._context.Set<TEntity>().FindAsync(id);
-            if (entity == null)
-            {
-                return;
-            }
 
-            Delete(entity);
+            return entity != null ? Delete(entity) : EntityState.Detached;
         }
 
-        public void Delete(TEntity entity)
+        public EntityState Delete(TEntity entity)
         {
-            if (this._context.Entry(entity).State == EntityState.Detached)
-            {
-                this._context.Set<TEntity>().Attach(entity);
-            }
-
-            this._context.Set<TEntity>().Remove(entity);
+            return (EntityState)this._context.Set<TEntity>().Remove(entity).State;
         }
 
-        public void Delete(params TEntity[] entities)
+        public void RemoveRange(params TEntity[] entities)
         {
-            Delete(entities.ToList());
-        }
-
-        public void Delete(IEnumerable<TEntity> entities)
-        {
-            foreach (var entity in entities)
-            {
-                if (this._context.Entry(entity).State == EntityState.Detached)
-                {
-                    this._context.Set<TEntity>().Attach(entity);
-                }
-            }
-
             this._context.Set<TEntity>().RemoveRange(entities);
         }
     }

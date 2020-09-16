@@ -380,6 +380,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Client\\CreditManagementSystem.Client.csproj": {
+                "projectPath": "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Client\\CreditManagementSystem.Client.csproj"
+              },
               "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Common\\CreditManagementSystem.Common.csproj": {
                 "projectPath": "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Common\\CreditManagementSystem.Common.csproj"
               }

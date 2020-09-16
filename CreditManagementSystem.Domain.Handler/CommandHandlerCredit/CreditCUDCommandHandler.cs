@@ -1,18 +1,22 @@
 ﻿using AutoMapper;
 using CreditManagementSystem.Client.Model.Credit;
 using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Domain.Handler;
+using CreditManagementSystem.Common.Domain;
 using CreditManagementSystem.Common.Extension;
 using CreditManagementSystem.Common.Response;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
 using CreditManagementSystem.Data.Model;
-using CreditManagementSystem.Domain.ComandCredit;
+using CreditManagementSystem.Domain.CommandCredit;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Validator
 {
-    public class CreditCUDCommandHandler : ICommandHandler<CreditCreateCommand>
+    public class CreditCUDCommandHandler :
+        ICommandHandler<CreditCreateCommand>,
+        ICommandHandler<CreditUpdateCommand>,
+        ICommandHandler<CreditDeleteCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Credit> _creditRepository;
@@ -36,26 +40,56 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
 
         public async Task<IResponse> HandleAsync(CreditCreateCommand command)
         {
-            var dbCredit = new Credit();
+            var dbCredit = new Credit
+            {
+                ID = this._idGenerator.NewId(),
+                CreationDay = DateTime.Now
+            };
 
             this.Common(dbCredit, command);
 
-            this._creditRepository.Add(dbCredit);
+            await this._creditRepository.AddAsync(dbCredit);
 
-            await this._unitOfWork.SaveChangesAsync(default);
+            await this._unitOfWork.SaveChangesAsync();
 
-            var result = this._mapper.Map<CreditCreateResultDto>(dbCredit);
+            var result = this._mapper.Map<CreditResultDto>(dbCredit);
 
             return command.OkResponse(result);
         }
 
+        public async Task<IResponse> HandleAsync(CreditUpdateCommand command)
+        {
+            var dbCredit = await this._creditQueryRepository.Find(e => e.ID == command.ID).FirstOrDefaultAsync();
+
+            dbCredit.ModificationDay = DateTime.UtcNow;
+            dbCredit.CreditStatusID = command.CreditStatusID;
+            dbCredit.DebtPaid = command.DebtPaid;
+            dbCredit.DueDate = command.DueDate;
+
+            this.Common(dbCredit, command);
+
+            this._creditRepository.Update(dbCredit);
+
+            await this._unitOfWork.SaveChangesAsync();
+
+            var result = this._mapper.Map<CreditResultDto>(dbCredit);
+
+            return command.OkResponse(result);
+        }
+
+        public async Task<IResponse> HandleAsync(CreditDeleteCommand command)
+        {
+            await this._creditRepository.DeleteByIDAsync(command.ID);
+
+            await this._unitOfWork.SaveChangesAsync();
+
+            return command.OkResponse(command.ID);
+        }
+
         private void Common(Credit dbCredit, CreditCUCommand command)
         {
-            dbCredit.ID = this._idGenerator.NewId();
             dbCredit.ClientID = command.ClientID;
             dbCredit.Amount = command.Amount;
-            dbCredit.CreditStatusID = Client.Model.CreditStatusValue.Pending;
-            dbCredit.CreationDay = DateTime.Now;
         }
     }
 }

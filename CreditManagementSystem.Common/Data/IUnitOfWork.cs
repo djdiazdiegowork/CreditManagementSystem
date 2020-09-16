@@ -14,6 +14,6 @@ namespace CreditManagementSystem.Common.Data
         /// Save changes.
         /// </summary>
         /// <param name="cancellationToken"></param>
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

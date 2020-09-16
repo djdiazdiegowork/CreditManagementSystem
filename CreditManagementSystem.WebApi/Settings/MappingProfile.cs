@@ -3,7 +3,7 @@ using CreditManagementSystem.Client.Model.Credit;
 using CreditManagementSystem.Client.Model.CreditStatus;
 using CreditManagementSystem.Client.Model.RiskCenter;
 using CreditManagementSystem.Data.Model;
-using CreditManagementSystem.Domain.ComandCredit;
+using CreditManagementSystem.Domain.CommandCredit;
 
 namespace CreditManagementSystem.WebApi.Settings
 {
@@ -13,8 +13,10 @@ namespace CreditManagementSystem.WebApi.Settings
         {
             CreateMap<CreditStatus, CreditStatusDto>();
             CreateMap<RiskCenter, RiskCenterDto>();
-            CreateMap<Credit, CreditCreateResultDto>();
+            CreateMap<Credit, CreditResultDto>();
             CreateMap<CreditCreateDto, CreditCreateCommand>();
+            CreateMap<CreditUpdateDto, CreditUpdateCommand>();
+            CreateMap<CreditDeleteDto, CreditDeleteCommand>();
         }
     }
 }

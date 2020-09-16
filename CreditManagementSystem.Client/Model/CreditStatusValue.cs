@@ -2,8 +2,8 @@
 {
     public enum CreditStatusValue
     {
+        Pending = 0,
         Accepted = 1,
-        Denied = 2,
-        Pending = 3
+        Denied = 2
     }
 }

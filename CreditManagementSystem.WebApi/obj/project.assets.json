@@ -2267,6 +2267,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "CreditManagementSystem.Client": "1.0.0",
           "CreditManagementSystem.Common": "1.0.0"
         },
         "compile": {
