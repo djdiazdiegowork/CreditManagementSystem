@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Common.Data.EntityFramework
 {
-    public class Repository<TEntity, TContext> : IRepository<TEntity>
+    public class Repository<TEntity, TContext> : QueryRepository<TEntity, TContext>, IRepository<TEntity>
         where TEntity : class, IEntity
         where TContext : DbContext
     {
         private readonly TContext _context;
 
-        public Repository(TContext context)
+        public Repository(TContext context) : base(context)
         {
             this._context = context;
         }

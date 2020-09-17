@@ -20,20 +20,17 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Credit> _creditRepository;
-        private readonly IQueryRepository<Credit> _creditQueryRepository;
         private readonly IIdGenerator _idGenerator;
         private readonly IMapper _mapper;
 
         public CreditCUDCommandHandler(
             IUnitOfWork unitOfWork,
             IRepository<Credit> creditRepository,
-            IQueryRepository<Credit> creditQueryRepository,
             IIdGenerator idGenerator,
             IMapper mapper)
         {
             this._unitOfWork = unitOfWork;
             this._creditRepository = creditRepository;
-            this._creditQueryRepository = creditQueryRepository;
             this._idGenerator = idGenerator;
             this._mapper = mapper;
         }
@@ -59,7 +56,7 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
 
         public async Task<IResponse> HandleAsync(CreditUpdateCommand command)
         {
-            var dbCredit = await this._creditQueryRepository.Find(e => e.ID == command.ID).FirstOrDefaultAsync();
+            var dbCredit = await this._creditRepository.Find(e => e.ID == command.ID).FirstOrDefaultAsync();
 
             dbCredit.ModificationDay = DateTime.UtcNow;
             dbCredit.CreditStatusID = command.CreditStatusID;

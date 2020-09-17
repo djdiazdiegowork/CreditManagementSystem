@@ -1,10 +1,9 @@
 ﻿using CreditManagementSystem.Common.Extension;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.CodeAnalysis;
 
 namespace CreditManagementSystem.Common.Data.EntityFramework
 {
-    public class EFDbContext : DbContext
+    public class EFDbContext : DbContext, IUnitOfWork
     {
 
         public EFDbContext(DbContextOptions options)

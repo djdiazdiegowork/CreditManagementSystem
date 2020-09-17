@@ -1,5 +1,4 @@
 ﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Extension;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +17,7 @@ namespace CreditManagementSystem.Data.EntityFramework.DependencyInjection
 
             var dbContextType = typeof(CreditManagementSystemDbContext);
 
-            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork<>).MakeGenericType(dbContextType));
+            services.AddScoped(typeof(IUnitOfWork), typeof(CreditManagementSystemDbContext));
             services.AddTransient<IIdGenerator, SequentialIdGenerator>();
             services.AddRepositories(dbContextType);
         }

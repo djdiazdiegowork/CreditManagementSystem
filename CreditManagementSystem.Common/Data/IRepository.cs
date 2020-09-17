@@ -1,4 +1,7 @@
-﻿using System.Threading;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Common.Data
@@ -24,5 +27,8 @@ namespace CreditManagementSystem.Common.Data
 
         void RemoveRange(params TEntity[] entities);
 
+        IQueryable<TEntity> FindAll(params string[] include);
+
+        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, params string[] include);
     }
 }
