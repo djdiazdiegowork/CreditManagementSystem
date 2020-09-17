@@ -7,12 +7,12 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
 {
     public abstract class Seed<TEntity> : ISeed<TEntity> where TEntity : class, IEnumeration
     {
-        public virtual async Task SeedAsync(IQueryRepository<TEntity> queryRepository, IRepository<TEntity> repository, IUnitOfWork unitOfWork)
+        public virtual async Task SeedAsync(IRepository<TEntity> repository, IUnitOfWork unitOfWork)
         {
             var entities = typeof(TEntity).GetFields(BindingFlags.Public | BindingFlags.Static).Select(f => (TEntity)f.GetValue(f)).ToArray();
             var propertiesName = typeof(TEntity).GetProperties().Where(p => p.Name != nameof(IEntity.ID)).Select(p => p.Name).ToArray();
 
-            var dbEntities = await queryRepository.FindAll().ToArrayAsync();
+            var dbEntities = await repository.FindAll().ToArrayAsync();
 
             var pairs = (from dbEntity in dbEntities
                          let entity = entities.FirstOrDefault(entity => entity.ID.Equals(dbEntity.ID))
@@ -44,7 +44,7 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
                 repository.Add(entity);
             }
 
-            await unitOfWork.SaveChangesAsync(new System.Threading.CancellationToken());
+            await unitOfWork.SaveChangesAsync();
         }
     }
 

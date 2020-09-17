@@ -104,7 +104,6 @@ namespace CreditManagementSystem.WebApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
             });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
@@ -132,7 +131,7 @@ namespace CreditManagementSystem.WebApi
 
             Task.Run(async () =>
             {
-                using CreditManagementSystemDbContext dbContext = provider.GetService<CreditManagementSystemDbContext>();
+                using CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext dbContext = provider.GetService<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>();
                 await Utils.ApplyPenndingMigrations(dbContext);
                 await Utils.ApplySeed(provider);
             }).Wait();

@@ -3,16 +3,14 @@ using System;
 using CreditManagementSystem.Data.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CreditManagementSystem.Data.EntityFramework.Migrations
 {
-    [DbContext(typeof(CreditManagementSystemDbContext))]
-    [Migration("20200916171129_ChangeCreditStatus")]
-    partial class ChangeCreditStatus
+    [DbContext(typeof(CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext))]
+    partial class CreditManagementSystemReadWriteDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,21 +65,6 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("CreditStatus");
-                });
-
-            modelBuilder.Entity("CreditManagementSystem.Data.Model.RiskCenter", b =>
-                {
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("RiskCenter");
                 });
 
             modelBuilder.Entity("CreditManagementSystem.Data.Model.Credit", b =>

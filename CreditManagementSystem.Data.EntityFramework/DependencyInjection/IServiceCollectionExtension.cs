@@ -10,16 +10,23 @@ namespace CreditManagementSystem.Data.EntityFramework.DependencyInjection
     {
         public static void AddDataEFServices(this IServiceCollection services, string connectionStrings)
         {
-            services.AddDbContext<CreditManagementSystemDbContext>(options =>
+            services.AddDbContext<CreditManagementSystemDbContext.CreditManagementSystemReadOnlyDbContext>(options =>
             {
                 options.UseMySQL(connectionStrings);
             });
 
-            var dbContextType = typeof(CreditManagementSystemDbContext);
+            services.AddDbContext<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>(options =>
+            {
+                options.UseMySQL(connectionStrings);
+            });
 
-            services.AddScoped(typeof(IUnitOfWork), typeof(CreditManagementSystemDbContext));
+            var readWriteDbContextType = typeof(CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext);
+            var readOnlyDContextType = typeof(CreditManagementSystemDbContext.CreditManagementSystemReadOnlyDbContext);
+
+            services.AddScoped<IUnitOfWork, CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>(provider =>
+                provider.GetService<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>());
             services.AddTransient<IIdGenerator, SequentialIdGenerator>();
-            services.AddRepositories(dbContextType);
+            services.AddRepositories(readOnlyDContextType, readWriteDbContextType);
         }
     }
 

@@ -10,7 +10,7 @@ C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.csprojAssemblyReference.cache
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.AssemblyInfoInputs.cache
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.AssemblyInfo.cs
-C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.csproj.CoreCompileInputs.cache
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.csproj.CopyComplete
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.dll
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data.EntityFramework\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.EntityFramework.csproj.CoreCompileInputs.cache

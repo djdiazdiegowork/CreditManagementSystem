@@ -22,10 +22,9 @@ namespace CreditManagementSystem.Common
                          let entityType = seedType.BaseType.GenericTypeArguments
                          let parameters = new[]
                          {
-                                   provider.GetService(typeof(IQueryRepository<>).MakeGenericType(entityType)),
-                                   provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
-                                   provider.GetService(typeof(IUnitOfWork))
-                               }
+                             provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
+                             provider.GetService(typeof(IUnitOfWork))
+                         }
                          let methodInfo = seedType.GetMethod(nameof(ISeed<IEntity>.SeedAsync))
                          let instance = Activator.CreateInstance(seedType)
                          let resultTask = (Task)methodInfo.Invoke(instance, parameters)

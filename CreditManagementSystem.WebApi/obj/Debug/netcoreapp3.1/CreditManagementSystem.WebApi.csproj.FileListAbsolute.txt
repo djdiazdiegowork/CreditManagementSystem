@@ -92,3 +92,8 @@ C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebAp
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\obj\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.xml
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\obj\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.pdb
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\obj\Debug\netcoreapp3.1\CreditManagementSystem.WebApi.genruntimeconfig.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll

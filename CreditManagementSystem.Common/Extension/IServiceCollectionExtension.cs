@@ -1,7 +1,6 @@
 ﻿using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Domain;
-using CreditManagementSystem.Common.Domain.Handler;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,26 +10,14 @@ namespace CreditManagementSystem.Common.Extension
 {
     public static class IServiceCollectionExtension
     {
-        public static void AddRepositories(this IServiceCollection services, Type dbContextType)
+        public static void AddRepositories(this IServiceCollection services, Type readOnlyDbContextType, Type readWriteDbContextType)
         {
             var types = typeof(IEntity).GetEntityTypes();
 
-            var pairs = (from type in types
-                         let typesForService = new Dictionary<Type, Type>
-                         {
-                             { typeof(IRepository<>).MakeGenericType(type),
-                                 typeof(Repository<,>).MakeGenericType(type, dbContextType)
-                             },
-                             { typeof(IQueryRepository<>).MakeGenericType(type),
-                                 typeof(QueryRepository<,>).MakeGenericType(type, dbContextType)
-                             }
-                         }
-                         from typeForService in typesForService
-                         select (typeForService.Key, typeForService.Value)).ToArray();
-
-            foreach (var (interfacetype, concreteType) in pairs)
+            foreach (var type in types)
             {
-                services.AddScoped(interfacetype, provider => Activator.CreateInstance(concreteType, provider.GetService(dbContextType)));
+                CreateRepositories(services, type, typeof(IRepository<>), typeof(Repository<,>), readWriteDbContextType);
+                CreateRepositories(services, type, typeof(IQueryRepository<>), typeof(QueryRepository<,>), readOnlyDbContextType);
             }
         }
 
@@ -60,6 +47,14 @@ namespace CreditManagementSystem.Common.Extension
             {
                 services.AddScoped(genericInterfaceType, genericType);
             }
+        }
+
+        private static void CreateRepositories(IServiceCollection services, Type entityType, Type interfacetype, Type concreteType, Type dbContextType)
+        {
+            interfacetype = interfacetype.MakeGenericType(entityType);
+            concreteType = concreteType.MakeGenericType(entityType, dbContextType);
+
+            services.AddScoped(interfacetype, provider => Activator.CreateInstance(concreteType, provider.GetService(dbContextType)));
         }
     }
 }

@@ -8,15 +8,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CreditManagementSystem.Data.EntityFramework.Migrations
 {
-    [DbContext(typeof(CreditManagementSystemDbContext))]
-    [Migration("20200903055959_Initial")]
+    [DbContext(typeof(CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext))]
+    [Migration("20200917203734_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CreditManagementSystem.Data.Model.Credit", b =>
@@ -38,10 +38,13 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                     b.Property<int>("CreditStatusID")
                         .HasColumnType("int");
 
-                    b.Property<double?>("DebtPaid")
+                    b.Property<double>("DebtPaid")
                         .HasColumnType("double");
 
                     b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("ModificationDay")
                         .HasColumnType("datetime");
 
                     b.HasKey("ID");
@@ -64,21 +67,6 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("CreditStatus");
-                });
-
-            modelBuilder.Entity("CreditManagementSystem.Data.Model.RiskCenter", b =>
-                {
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("RiskCenter");
                 });
 
             modelBuilder.Entity("CreditManagementSystem.Data.Model.Credit", b =>

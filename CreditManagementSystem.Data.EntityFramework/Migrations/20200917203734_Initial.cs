@@ -20,26 +20,15 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RiskCenter",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RiskCenter", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Credit",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "char(36)", nullable: false),
                     ClientID = table.Column<string>(type: "char(36)", nullable: false),
                     Amount = table.Column<double>(nullable: false),
-                    DebtPaid = table.Column<double>(nullable: true),
+                    DebtPaid = table.Column<double>(nullable: false),
                     CreationDay = table.Column<DateTime>(nullable: false),
+                    ModificationDay = table.Column<DateTime>(nullable: true),
                     DueDate = table.Column<DateTime>(nullable: true),
                     CreditStatusID = table.Column<int>(nullable: false)
                 },
@@ -64,9 +53,6 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Credit");
-
-            migrationBuilder.DropTable(
-                name: "RiskCenter");
 
             migrationBuilder.DropTable(
                 name: "CreditStatus");
