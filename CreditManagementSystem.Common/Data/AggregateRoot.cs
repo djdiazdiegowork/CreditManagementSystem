@@ -18,7 +18,7 @@ namespace CreditManagementSystem.Common.Data
 
         public IReadOnlyCollection<IEvent> GetEvents()
         {
-            return _events;
+            return this._events;
         }
 
         protected void AddEvent(IEvent @event)
