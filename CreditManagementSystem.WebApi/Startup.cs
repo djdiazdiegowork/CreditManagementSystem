@@ -131,7 +131,7 @@ namespace CreditManagementSystem.WebApi
 
             Task.Run(async () =>
             {
-                using CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext dbContext = provider.GetService<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>();
+                using var dbContext = provider.GetService<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>();
                 await Utils.ApplyPenndingMigrations(dbContext);
                 await Utils.ApplySeed(provider);
             }).Wait();

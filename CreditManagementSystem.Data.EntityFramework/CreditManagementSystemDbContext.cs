@@ -12,6 +12,7 @@ namespace CreditManagementSystem.Data.EntityFramework
         public CreditManagementSystemDbContext(DbContextOptions options)
             : base(options)
         {
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public class CreditManagementSystemReadOnlyDbContext : CreditManagementSystemDbContext

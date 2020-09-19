@@ -13,7 +13,7 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
         public EFDbContext(DbContextOptions options)
             : base(options)
         {
-            this.ChangeTracker.LazyLoadingEnabled = false;
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

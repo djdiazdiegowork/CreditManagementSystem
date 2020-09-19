@@ -1,4 +1,4 @@
-﻿namespace CreditManagementSystem.Common.Security
+﻿namespace CreditManagementSystem.WebApi.Security
 {
     public static class MappingProfile
     {

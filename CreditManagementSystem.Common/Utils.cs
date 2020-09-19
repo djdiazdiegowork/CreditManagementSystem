@@ -1,5 +1,4 @@
 ﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
