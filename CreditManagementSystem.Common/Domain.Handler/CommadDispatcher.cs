@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Common.Domain.Handler
 {
-    public class CommadDispatcher : ICommandDispatcher
+    public sealed class CommadDispatcher : ICommandDispatcher
     {
         private readonly IServiceProvider _provider;
         public CommadDispatcher(IServiceProvider provider)
@@ -17,7 +17,7 @@ namespace CreditManagementSystem.Common.Domain.Handler
         {
             var type = typeof(TCommand);
 
-            var validator = (IValidator<TCommand>)this._provider.GetService(typeof(IValidator<>).MakeGenericType(type));
+            var validator = (IValidator<TCommand>)this._provider.GetService(typeof(IValidator<TCommand>));
 
             if (validator != null)
             {

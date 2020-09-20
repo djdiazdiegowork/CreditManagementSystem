@@ -1,6 +1,7 @@
 ﻿using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Domain;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,20 @@ namespace CreditManagementSystem.Common.Extension
             }
         }
 
-        public static void AddCommandHandler(this IServiceCollection services, IEnumerable<Type> commandTypes)
+        public static void AddCommandHandler(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> commandTypes)
         {
-            var pairs = (from commandType in commandTypes
-                         let genericInterfaceType = typeof(ICommandHandler<>).MakeGenericType(commandType)
+            CreateGenericService(services, validatorBaseType, commandTypes);
+        }
+
+        public static void AddCommandValidator(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> validatorTypes)
+        {
+            CreateGenericService(services, validatorBaseType, validatorTypes);
+        }
+
+        private static void CreateGenericService(IServiceCollection services, Type baseType, IEnumerable<Type> validatorTypes)
+        {
+            var pairs = (from validatorType in validatorTypes
+                         let genericInterfaceType = baseType.MakeGenericType(validatorType)
                          let genericTypes = genericInterfaceType.GetEntityTypes()
                          from genericType in genericTypes
                          select (genericInterfaceType, genericType)).ToArray();

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace CreditManagementSystem.WebApi.Filters
 {
-    public class ValidationActionModelAttribute : ActionFilterAttribute
+    public sealed class ValidationActionModelAttribute : ActionFilterAttribute
     {
         public ValidationActionModelAttribute()
         {
@@ -24,7 +24,8 @@ namespace CreditManagementSystem.WebApi.Filters
         {
             if (context.Result is BadRequestObjectResult result && result.Value is ValidationProblemDetails validationProblem)
             {
-                var response = new Response<object> {
+                var response = new Response<object>
+                {
                     Code = result.StatusCode.Value,
                     Body = validationProblem.Errors,
                     UIText = "Invalid Argument"
@@ -49,7 +50,8 @@ namespace CreditManagementSystem.WebApi.Filters
                     response.UIText = exception.Message;
 
                     context.Result = controller.StatusCode(StatusCodes.Status400BadRequest, response);
-                } else
+                }
+                else
                 {
                     response.Code = StatusCodes.Status500InternalServerError;
                     response.Body = new Dictionary<string, IEnumerable<string>> {
