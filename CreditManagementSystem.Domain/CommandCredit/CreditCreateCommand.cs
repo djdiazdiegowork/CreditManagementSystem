@@ -1,7 +1,6 @@
-﻿namespace CreditManagementSystem.Domain.ComandCredit
+﻿namespace CreditManagementSystem.Domain.CommandCredit
 {
-    public class CreditCreateCommand : CreditCUCommand
+    public sealed class CreditCreateCommand : CreditCUCommand
     {
-
     }
 }

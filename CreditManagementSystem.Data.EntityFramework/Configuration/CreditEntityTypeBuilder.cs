@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CreditManagementSystem.Data.EntityFramework.Configuration
 {
-    public class CreditEntityTypeBuilder : CreditManagementSystemEntityTypeBuilder<Credit>
+    public sealed class CreditEntityTypeBuilder : CreditManagementSystemEntityTypeBuilder<Credit>
     {
         public override void Configure(EntityTypeBuilder<Credit> builder)
         {

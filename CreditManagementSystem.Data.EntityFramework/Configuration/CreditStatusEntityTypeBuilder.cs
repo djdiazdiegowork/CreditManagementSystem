@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CreditManagementSystem.Data.EntityFramework.Configuration
 {
-    public class CreditStatusEntityTypeBuilder : CreditManagementSystemEntityTypeBuilder<CreditStatus>
+    public sealed class CreditStatusEntityTypeBuilder : CreditManagementSystemEntityTypeBuilder<CreditStatus>
     {
         public override void Configure(EntityTypeBuilder<CreditStatus> builder)
         {

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Common.Data
@@ -6,54 +10,26 @@ namespace CreditManagementSystem.Common.Data
     public interface IRepository<TEntity>
         where TEntity : class
     {
-        /// <summary>
-        /// Add entity.
-        /// </summary>
-        void Add(TEntity entity);
+        EntityState Add(TEntity entity);
 
-        /// <summary>
-        /// Add entities.
-        /// </summary>
-        void Add(params TEntity[] entities);
+        void AddRange(params TEntity[] entities);
 
-        /// <summary>
-        /// Add entities.
-        /// </summary>
-        void Add(IEnumerable<TEntity> entities);
+        Task<EntityState> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// Update entity.
-        /// </summary>
-        void Update(TEntity entity);
+        Task AddRangeAsync(CancellationToken cancellationToken = default, params TEntity[] entities);
 
-        /// <summary>
-        /// Update entities.
-        /// </summary>
-        void Update(params TEntity[] entities);
+        EntityState Update(TEntity entity);
 
-        /// <summary>
-        /// Update entities.
-        /// </summary>
-        void Update(IEnumerable<TEntity> entities);
+        void UpdateRange(params TEntity[] entities);
 
-        /// <summary>
-        /// Delete entity by id.
-        /// </summary>
-        Task Delete(object id);
+        Task<EntityState> DeleteByIDAsync(object id);
 
-        /// <summary>
-        /// Delete entity.
-        /// </summary>
-        void Delete(TEntity entity);
+        EntityState Delete(TEntity entity);
 
-        /// <summary>
-        /// Delete entities.
-        /// </summary>
-        void Delete(params TEntity[] entities);
+        void RemoveRange(params TEntity[] entities);
 
-        /// <summary>
-        /// Delete entities.
-        /// </summary>
-        void Delete(IEnumerable<TEntity> entities);
+        IQueryable<TEntity> FindAll(params string[] include);
+
+        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, params string[] include);
     }
 }

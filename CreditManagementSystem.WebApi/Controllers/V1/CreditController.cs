@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using CreditManagementSystem.Client.Model.Credit;
-using CreditManagementSystem.Client.Model.CreditStatus;
-using CreditManagementSystem.Common.Domain.Handler;
+using CreditManagementSystem.Common.Domain;
 using CreditManagementSystem.Common.Response;
-using CreditManagementSystem.Domain.ComandCredit;
+using CreditManagementSystem.Domain.CommandCredit;
 using CreditManagementSystem.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.WebApi.Controllers.V1
@@ -38,11 +37,12 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<Response<IEnumerable<CreditCreateResultDto>>>> Get()
+        public async Task<ActionResult<Response<IEnumerable<CreditResultDto>>>> Get()
         {
-            var result = await this._creditService.GetAll<CreditCreateResultDto>();
+            var result = await this._creditService.GetAll<CreditResultDto>();
 
-            var response = new Response<IEnumerable<CreditCreateResultDto>> {
+            var response = new Response<IEnumerable<CreditResultDto>>
+            {
                 Body = result,
                 Code = Response.StatusCode
             };
@@ -56,9 +56,39 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Response<IEnumerable<CreditCreateResultDto>>>> Post([FromBody] CreditCreateDto dto)
+        public async Task<ActionResult<Response<IEnumerable<CreditResultDto>>>> Post([FromBody] CreditCreateDto dto)
         {
             var command = _mapper.Map(dto, new CreditCreateCommand());
+
+            var response = await _dispatcher.DispatchAsync(command);
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Update Credit.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<ActionResult<Response<IEnumerable<CreditResultDto>>>> Put([FromBody] CreditUpdateDto dto)
+        {
+            var command = _mapper.Map(dto, new CreditUpdateCommand());
+
+            var response = await _dispatcher.DispatchAsync(command);
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Delete Credit.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<ActionResult<Response<Guid>>> Delete([FromBody] CreditDeleteDto dto)
+        {
+            var command = _mapper.Map(dto, new CreditDeleteCommand());
 
             var response = await _dispatcher.DispatchAsync(command);
 

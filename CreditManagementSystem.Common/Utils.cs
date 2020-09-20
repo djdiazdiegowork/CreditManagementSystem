@@ -1,5 +1,4 @@
 ﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Data.EntityFramework;
 using CreditManagementSystem.Common.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -18,22 +17,21 @@ namespace CreditManagementSystem.Common
         {
             var seedTypes = typeof(ISeed<>).GetEntityTypes();
 
-            var resultTasks = (from seedType in seedTypes
-                               let entityType = seedType.BaseType.GenericTypeArguments
-                               let parameters = new[]
-                               {
-                                   provider.GetService(typeof(IQueryRepository<>).MakeGenericType(entityType)),
-                                   provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
-                                   provider.GetService(typeof(IUnitOfWork))
-                               }
-                               let methodInfo = seedType.GetMethod(nameof(ISeed<IEntity>.SeedAsync))
-                               let instance = Activator.CreateInstance(seedType)
-                               let resultTask = (Task)methodInfo.Invoke(instance, parameters)
-                               select resultTask).ToArray();
+            var tasks = (from seedType in seedTypes
+                         let entityType = seedType.BaseType.GenericTypeArguments
+                         let parameters = new[]
+                         {
+                             provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
+                             provider.GetService(typeof(IUnitOfWork))
+                         }
+                         let methodInfo = seedType.GetMethod(nameof(ISeed<IEntity>.SeedAsync))
+                         let instance = Activator.CreateInstance(seedType)
+                         let resultTask = (Task)methodInfo.Invoke(instance, parameters)
+                         select resultTask).ToArray();
 
-            foreach (var resultTask in resultTasks)
+            foreach (var task in tasks)
             {
-                await resultTask;
+                await task;
             }
         }
 

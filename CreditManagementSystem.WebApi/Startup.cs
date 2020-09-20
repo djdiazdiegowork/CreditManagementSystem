@@ -104,7 +104,6 @@ namespace CreditManagementSystem.WebApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
             });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
@@ -126,12 +125,13 @@ namespace CreditManagementSystem.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CreditManagementSystem API V1");
+                c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
                 c.RoutePrefix = string.Empty;
             });
 
             Task.Run(async () =>
             {
-                using CreditManagementSystemDbContext dbContext = provider.GetService<CreditManagementSystemDbContext>();
+                using var dbContext = provider.GetService<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>();
                 await Utils.ApplyPenndingMigrations(dbContext);
                 await Utils.ApplySeed(provider);
             }).Wait();

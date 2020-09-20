@@ -20,21 +20,18 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
         {
             var query = this._context.Set<TEntity>().Where(predicate);
 
-            if (include != null)
-            {
-                foreach (var navigationProperty in include)
-                {
-                    query = query.Include(navigationProperty);
-                }
-            }
-
-            return query;
+            return AddNavigationProperties(query, include);
         }
 
         public IQueryable<TEntity> FindAll(params string[] include)
         {
             var query = (IQueryable<TEntity>)this._context.Set<TEntity>();
 
+            return AddNavigationProperties(query, include);
+        }
+
+        private IQueryable<TEntity> AddNavigationProperties(IQueryable<TEntity> query, params string[] include)
+        {
             if (include != null)
             {
                 foreach (var navigationProperty in include)

@@ -16,8 +16,4 @@
     <ProjectReference Include="..\CreditManagementSystem.Domain\CreditManagementSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CommandHandlerCredit\Validator\" />
-  </ItemGroup>
-
 </Project>
