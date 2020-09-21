@@ -37,13 +37,7 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
 
         public async Task<IResponse> HandleAsync(CreditCreateCommand command)
         {
-            var dbCredit = new Credit
-            {
-                ID = this._idGenerator.NewId(),
-                CreationDay = DateTime.Now
-            };
-
-            this.Common(dbCredit, command);
+            var dbCredit = new Credit(this._idGenerator.NewId(), command.ClientID, command.Amount);
 
             await this._creditRepository.AddAsync(dbCredit);
 
@@ -58,12 +52,8 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
         {
             var dbCredit = await this._creditRepository.Find(e => e.ID == command.ID).FirstOrDefaultAsync();
 
-            dbCredit.ModificationDay = DateTime.UtcNow;
-            dbCredit.CreditStatusID = command.CreditStatusID;
-            dbCredit.DebtPaid = command.DebtPaid;
-            dbCredit.DueDate = command.DueDate;
-
-            this.Common(dbCredit, command);
+            dbCredit.UpdateCredit(command.ClientID, command.Amount, command.CreditStatusID, command.DebtPaid,
+                command.DueDate);
 
             this._creditRepository.Update(dbCredit);
 
@@ -81,12 +71,6 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
             await this._unitOfWork.SaveChangesAsync();
 
             return command.OkResponse(command.ID);
-        }
-
-        private void Common(Credit dbCredit, CreditCUCommand command)
-        {
-            dbCredit.ClientID = command.ClientID;
-            dbCredit.Amount = command.Amount;
         }
     }
 }
