@@ -4,7 +4,7 @@ using System;
 
 namespace CreditManagementSystem.Data.Model
 {
-    public class Credit : Entity<Guid>
+    public class Credit : AggregateRoot<Guid>
     {
         public Credit() { }
 
@@ -17,6 +17,15 @@ namespace CreditManagementSystem.Data.Model
             this.CreationDay = DateTime.UtcNow;
         }
 
+        public Guid ClientID { get; private set; }
+        public double Amount { get; private set; }
+        public double DebtPaid { get; private set; }
+        public DateTime CreationDay { get; private set; }
+        public DateTime? ModificationDay { get; private set; }
+        public DateTime? DueDate { get; private set; }
+        public CreditStatusValue CreditStatusID { get; private set; }
+        public virtual CreditStatus CreditStatus { get; private set; }
+
         public void UpdateCredit(Guid clientID, double amount, CreditStatusValue creditStatusId,
             double debtPaid, DateTime? dueDate)
         {
@@ -28,13 +37,9 @@ namespace CreditManagementSystem.Data.Model
             this.ModificationDay = DateTime.UtcNow;
         }
 
-        public Guid ClientID { get; private set; }
-        public double Amount { get; private set; }
-        public double DebtPaid { get; private set; }
-        public DateTime CreationDay { get; private set; }
-        public DateTime? ModificationDay { get; private set; }
-        public DateTime? DueDate { get; private set; }
-        public CreditStatusValue CreditStatusID { get; private set; }
-        public virtual CreditStatus CreditStatus { get; private set; }
+        public void AddNewEvent(IEvent @event)
+        {
+            this.AddEvent(@event);
+        }
     }
 }

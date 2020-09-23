@@ -21,7 +21,7 @@ namespace CreditManagementSystem.Common.Data
             return this._events;
         }
 
-        protected void AddEvent(IEvent @event)
+        protected void AddEvent<TEvent>(TEvent @event) where TEvent : IEvent
         {
             this._events.Add(@event);
         }

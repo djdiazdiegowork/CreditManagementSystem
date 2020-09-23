@@ -1,10 +1,12 @@
-﻿using CreditManagementSystem.Common.Response;
+﻿using CreditManagementSystem.Common.Extension;
+using CreditManagementSystem.Common.Response;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace CreditManagementSystem.WebApi.Filters
 {
@@ -39,28 +41,15 @@ namespace CreditManagementSystem.WebApi.Filters
         {
             if (context.Exception != null && context.Controller is ControllerBase controller)
             {
-                var response = new Response<object>();
+                var exception = context.Exception;
 
-                if (context.Exception is ValidationException exception)
-                {
-                    response.Code = StatusCodes.Status400BadRequest;
-                    response.Body = exception.Errors.Select(e => new Dictionary<string, string> {
-                        {e.PropertyName, e.ErrorMessage }
-                    });
-                    response.UIText = exception.Message;
+                var response = exception is ValidationException exception1 ?
+                    exception1.ResponseValidationException() :
+                    exception is EventException exception2 ?
+                    exception2.ResponseEventException() :
+                    exception.ResponseException();
 
-                    context.Result = controller.StatusCode(StatusCodes.Status400BadRequest, response);
-                }
-                else
-                {
-                    response.Code = StatusCodes.Status500InternalServerError;
-                    response.Body = new Dictionary<string, IEnumerable<string>> {
-                        { "Fatal error", new string[] { context.Exception.Message } }
-                    };
-                    response.UIText = "Server Error";
-
-                    context.Result = controller.StatusCode(StatusCodes.Status500InternalServerError, response);
-                }
+                context.Result = controller.StatusCode(response.Code, response);
 
                 context.Exception = null;
             }

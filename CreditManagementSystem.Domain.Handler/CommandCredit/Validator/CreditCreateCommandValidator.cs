@@ -2,10 +2,9 @@
 using CreditManagementSystem.Common.Domain.Handler;
 using CreditManagementSystem.Data.Model;
 using CreditManagementSystem.Domain.CommandCredit;
-using CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Validator;
 using FluentValidation;
 
-namespace CreditManagementSystem.Domain.Handler.CommandHandlerCredit.Validator
+namespace CreditManagementSystem.Domain.Handler.CommandCredit.Validator
 {
     public abstract class CreditCUCommandValidator<TCommand> : CommandValidator<TCommand> where TCommand : CreditCUCommand
     {

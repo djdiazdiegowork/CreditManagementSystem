@@ -41,6 +41,11 @@ namespace CreditManagementSystem.Common.Extension
             CreateGenericService(services, validatorBaseType, commandTypes);
         }
 
+        public static void AddEventHandler(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> eventTypes)
+        {
+            CreateGenericService(services, validatorBaseType, eventTypes);
+        }
+
         public static void AddCommandValidator(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> validatorTypes)
         {
             CreateGenericService(services, validatorBaseType, validatorTypes);

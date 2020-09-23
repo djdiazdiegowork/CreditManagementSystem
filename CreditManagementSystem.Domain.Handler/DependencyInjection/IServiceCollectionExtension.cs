@@ -1,4 +1,5 @@
-﻿using CreditManagementSystem.Common.Domain;
+﻿using CreditManagementSystem.Common.Data;
+using CreditManagementSystem.Common.Domain;
 using CreditManagementSystem.Common.Domain.Handler;
 using CreditManagementSystem.Common.Extension;
 using FluentValidation;
@@ -13,7 +14,9 @@ namespace CreditManagementSystem.Domain.Handler.DependencyInjection
             services.AddServicesHandler(typeof(IService).GetEntityTypes());
             services.AddCommandHandler(typeof(ICommandHandler<>), typeof(ICommand).GetEntityTypes());
             services.AddCommandValidator(typeof(IValidator<>), typeof(ICommand).GetEntityTypes());
+            services.AddEventHandler(typeof(IEventHandler<>), typeof(IEvent).GetEntityTypes());
             services.AddScoped<ICommandDispatcher, CommadDispatcher>();
+            services.AddScoped<IEventDispatcher, EventDispatcher>();
         }
     }
 }

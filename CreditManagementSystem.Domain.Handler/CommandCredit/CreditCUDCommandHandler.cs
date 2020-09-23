@@ -7,11 +7,11 @@ using CreditManagementSystem.Common.Response;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
 using CreditManagementSystem.Data.Model;
 using CreditManagementSystem.Domain.CommandCredit;
+using CreditManagementSystem.Domain.CommandCredit.Event;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 
-namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Validator
+namespace CreditManagementSystem.Domain.Handler.CommandCredit
 {
     public class CreditCUDCommandHandler :
         ICommandHandler<CreditCreateCommand>,
@@ -39,7 +39,9 @@ namespace CreditManagementSystem.Domain.Handler.CommandHandlerCreditStatus.Valid
         {
             var dbCredit = new Credit(this._idGenerator.NewId(), command.ClientID, command.Amount);
 
-            await this._creditRepository.AddAsync(dbCredit);
+            dbCredit.AddNewEvent(new CreditCreateEvent(dbCredit.ID, command));
+
+            this._creditRepository.Add(dbCredit);
 
             await this._unitOfWork.SaveChangesAsync();
 

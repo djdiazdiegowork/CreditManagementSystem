@@ -4,29 +4,34 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace CreditManagementSystem.Data.EntityFramework
 {
     public class CreditManagementSystemDbContext : EFDbContext
     {
-        public CreditManagementSystemDbContext(DbContextOptions options)
-            : base(options)
+        public CreditManagementSystemDbContext(IServiceProvider provider, DbContextOptions options)
+            : base(provider, options)
         {
             this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public class CreditManagementSystemReadOnlyDbContext : CreditManagementSystemDbContext
         {
-            public CreditManagementSystemReadOnlyDbContext(DbContextOptions<CreditManagementSystemReadOnlyDbContext> options)
-                : base(options)
+            public CreditManagementSystemReadOnlyDbContext(
+                IServiceProvider provider,
+                DbContextOptions<CreditManagementSystemReadOnlyDbContext> options)
+                : base(provider, options)
             {
             }
         }
 
         public class CreditManagementSystemReadWriteDbContext : CreditManagementSystemDbContext
         {
-            public CreditManagementSystemReadWriteDbContext(DbContextOptions<CreditManagementSystemReadWriteDbContext> options)
-                : base(options)
+            public CreditManagementSystemReadWriteDbContext(
+                 IServiceProvider provider,
+                 DbContextOptions<CreditManagementSystemReadWriteDbContext> options)
+                 : base(provider, options)
             {
             }
         }
@@ -46,7 +51,7 @@ namespace CreditManagementSystem.Data.EntityFramework
                     .UseMySQL(connectionString)
                     .Options;
 
-                return new CreditManagementSystemReadWriteDbContext(options);
+                return new CreditManagementSystemReadWriteDbContext(null, options);
             }
         }
     }

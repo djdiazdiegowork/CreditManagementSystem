@@ -1,1 +1,1 @@
-Add-Migration AddGender -Project CreditManagementSystem.Data.EntityFramework -StartupProject CreditManagementSystem.WebApi -Context CreditManagementSystemDbContext -Verbose
+Add-Migration Initial -Project CreditManagementSystem.Data.EntityFramework -StartupProject CreditManagementSystem.WebApi -Context CreditManagementSystemDbContext -Verbose
