@@ -13,20 +13,18 @@ namespace CreditManagementSystem.Common
 {
     public static class Utils
     {
-        public static async Task ApplySeed(IServiceProvider provider)
+        public static async Task ApplySeed(DbContext dbContext)
         {
             var seedTypes = typeof(ISeed<>).GetEntityTypes();
 
             var tasks = (from seedType in seedTypes
                          let entityType = seedType.BaseType.GenericTypeArguments
-                         let parameters = new[]
-                         {
-                             provider.GetService(typeof(IRepository<>).MakeGenericType(entityType)),
-                             provider.GetService(typeof(IUnitOfWork))
-                         }
                          let methodInfo = seedType.GetMethod(nameof(ISeed<IEntity>.SeedAsync))
                          let instance = Activator.CreateInstance(seedType)
-                         let resultTask = (Task)methodInfo.Invoke(instance, parameters)
+                         let resultTask = (Task)methodInfo.Invoke(instance, new[]
+                         {
+                             dbContext
+                         })
                          select resultTask).ToArray();
 
             foreach (var task in tasks)

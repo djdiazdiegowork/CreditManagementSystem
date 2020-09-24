@@ -6,7 +6,7 @@ namespace CreditManagementSystem.Common.Data
     {
         private int? _requestedHashCode;
 
-        public TKey ID { get; set; }
+        public TKey ID { get; protected set; }
 
         public bool IsTransient()
         {

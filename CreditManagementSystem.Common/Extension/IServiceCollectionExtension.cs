@@ -17,7 +17,8 @@ namespace CreditManagementSystem.Common.Extension
 
             foreach (var type in types)
             {
-                CreateRepositories(services, type, typeof(IRepository<>), typeof(Repository<,>), readWriteDbContextType);
+                if (!type.GetInterfaces().Contains(typeof(IEnumeration)))
+                    CreateRepositories(services, type, typeof(IRepository<>), typeof(Repository<,>), readWriteDbContextType);
                 CreateRepositories(services, type, typeof(IQueryRepository<>), typeof(QueryRepository<,>), readOnlyDbContextType);
             }
         }
@@ -39,6 +40,11 @@ namespace CreditManagementSystem.Common.Extension
         public static void AddCommandHandler(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> commandTypes)
         {
             CreateGenericService(services, validatorBaseType, commandTypes);
+        }
+
+        public static void AddEventHandler(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> eventTypes)
+        {
+            CreateGenericService(services, validatorBaseType, eventTypes);
         }
 
         public static void AddCommandValidator(this IServiceCollection services, Type validatorBaseType, IEnumerable<Type> validatorTypes)

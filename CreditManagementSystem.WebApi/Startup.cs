@@ -133,7 +133,7 @@ namespace CreditManagementSystem.WebApi
             {
                 using var dbContext = provider.GetService<CreditManagementSystemDbContext.CreditManagementSystemReadWriteDbContext>();
                 await Utils.ApplyPenndingMigrations(dbContext);
-                await Utils.ApplySeed(provider);
+                await Utils.ApplySeed(dbContext);
             }).Wait();
         }
     }

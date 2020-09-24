@@ -33,7 +33,7 @@ namespace CreditManagementSystem.Common.Response
         {
             T body = this.Body;
             ref T local = ref body;
-            return (object)local == null ? (Type)null : local.GetType();
+            return local == null ? (Type)null : local.GetType();
         }
     }
 }

@@ -58,7 +58,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         [HttpPost]
         public async Task<ActionResult<Response<IEnumerable<CreditResultDto>>>> Post([FromBody] CreditCreateDto dto)
         {
-            var command = _mapper.Map(dto, new CreditCreateCommand());
+            var command = this._mapper.Map(dto, new CreditCreateCommand());
 
             var response = await _dispatcher.DispatchAsync(command);
 
@@ -73,9 +73,9 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         [HttpPut]
         public async Task<ActionResult<Response<IEnumerable<CreditResultDto>>>> Put([FromBody] CreditUpdateDto dto)
         {
-            var command = _mapper.Map(dto, new CreditUpdateCommand());
+            var command = this._mapper.Map(dto, new CreditUpdateCommand());
 
-            var response = await _dispatcher.DispatchAsync(command);
+            var response = await this._dispatcher.DispatchAsync(command);
 
             return Ok(response);
         }
@@ -88,9 +88,9 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         [HttpDelete]
         public async Task<ActionResult<Response<Guid>>> Delete([FromBody] CreditDeleteDto dto)
         {
-            var command = _mapper.Map(dto, new CreditDeleteCommand());
+            var command = this._mapper.Map(dto, new CreditDeleteCommand());
 
-            var response = await _dispatcher.DispatchAsync(command);
+            var response = await this._dispatcher.DispatchAsync(command);
 
             return Ok(response);
         }
