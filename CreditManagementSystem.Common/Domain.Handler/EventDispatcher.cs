@@ -1,6 +1,6 @@
 ﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Extension;
-using CreditManagementSystem.Common.Response;
+using CreditManagementSystem.Common.Extensions;
+using CreditManagementSystem.Common.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

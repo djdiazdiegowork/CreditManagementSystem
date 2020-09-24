@@ -1,6 +1,6 @@
 ﻿using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Domain.Handler;
-using CreditManagementSystem.Data.Model;
+using CreditManagementSystem.Data.Models;
 using CreditManagementSystem.Domain.CommandCredit;
 using FluentValidation;
 

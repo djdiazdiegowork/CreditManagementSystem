@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreditManagementSystem.Client\CreditManagementSystem.Client.csproj" />
     <ProjectReference Include="..\CreditManagementSystem.Common\CreditManagementSystem.Common.csproj" />
     <ProjectReference Include="..\CreditManagementSystem.Data\CreditManagementSystem.Data.csproj" />
     <ProjectReference Include="..\CreditManagementSystem.Domain\CreditManagementSystem.Domain.csproj" />

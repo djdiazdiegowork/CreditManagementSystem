@@ -1,4 +1,4 @@
-﻿using CreditManagementSystem.Data.Model;
+﻿using CreditManagementSystem.Data.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CreditManagementSystem.Data.EntityFramework.Configuration

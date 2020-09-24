@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using CreditManagementSystem.Client.Model.Credit;
-using CreditManagementSystem.Client.Model.CreditStatus;
-using CreditManagementSystem.Data.Model;
+using CreditManagementSystem.Data.Models;
 using CreditManagementSystem.Domain.CommandCredit;
+using CreditManagementSystem.WebApi.Models.Credit;
+using CreditManagementSystem.WebApi.Models.CreditStatus;
 
 namespace CreditManagementSystem.WebApi.Settings
 {
-    public class MappingProfile : Profile
+    public sealed class MappingProfile : Profile
     {
         public MappingProfile()
         {

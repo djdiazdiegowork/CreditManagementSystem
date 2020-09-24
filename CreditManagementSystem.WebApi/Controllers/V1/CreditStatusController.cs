@@ -1,6 +1,6 @@
-﻿using CreditManagementSystem.Client.Model.CreditStatus;
-using CreditManagementSystem.Common.Response;
+﻿using CreditManagementSystem.Common.Responses;
 using CreditManagementSystem.Domain.Services;
+using CreditManagementSystem.WebApi.Models.CreditStatus;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,7 +12,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
     [ApiController]
     [Produces("application/json")]
     //[Authorize]
-    public class CreditStatusController : ControllerBase
+    public sealed class CreditStatusController : ControllerBase
     {
         private readonly ICreditStatusService _creditStatusService;
 
@@ -30,11 +30,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         {
             var result = await this._creditStatusService.GetAll<CreditStatusDto>();
 
-            var response = new Response<IEnumerable<CreditStatusDto>>
-            {
-                Body = result,
-                Code = Response.StatusCode
-            };
+            var response = new Response<IEnumerable<CreditStatusDto>>(Response.StatusCode, result, null);
 
             return Ok(response);
         }

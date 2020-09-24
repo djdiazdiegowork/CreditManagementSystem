@@ -1,4 +1,4 @@
-﻿using CreditManagementSystem.Client.Model;
+﻿using CreditManagementSystem.Data.ValueModels;
 using System;
 
 namespace CreditManagementSystem.Domain.CommandCredit

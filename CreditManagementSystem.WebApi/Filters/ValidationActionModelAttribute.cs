@@ -1,12 +1,9 @@
-﻿using CreditManagementSystem.Common.Extension;
-using CreditManagementSystem.Common.Response;
+﻿using CreditManagementSystem.Common.Exceptions;
+using CreditManagementSystem.Common.Extensions;
+using CreditManagementSystem.Common.Responses;
 using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 
 namespace CreditManagementSystem.WebApi.Filters
 {
@@ -26,12 +23,10 @@ namespace CreditManagementSystem.WebApi.Filters
         {
             if (context.Result is BadRequestObjectResult result && result.Value is ValidationProblemDetails validationProblem)
             {
-                var response = new Response<object>
-                {
-                    Code = result.StatusCode.Value,
-                    Body = validationProblem.Errors,
-                    UIText = "Invalid Argument"
-                };
+                var response = new Response<object>(
+                    result.StatusCode.Value,
+                    validationProblem.Errors,
+                    "Invalid Argument");
 
                 context.Result = new BadRequestObjectResult(response);
             }

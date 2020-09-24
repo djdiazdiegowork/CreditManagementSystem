@@ -1,6 +1,6 @@
-﻿using CreditManagementSystem.Client.Model;
-using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Data.Model;
+﻿using CreditManagementSystem.Common.Data;
+using CreditManagementSystem.Data.Models;
+using CreditManagementSystem.Data.ValueModels;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,7 +1,7 @@
 ﻿using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Domain;
 using CreditManagementSystem.Common.Domain.Handler;
-using CreditManagementSystem.Common.Extension;
+using CreditManagementSystem.Common.Extensions;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

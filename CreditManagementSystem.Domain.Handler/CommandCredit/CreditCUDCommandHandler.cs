@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
-using CreditManagementSystem.Client.Model.Credit;
 using CreditManagementSystem.Common.Data;
 using CreditManagementSystem.Common.Domain;
-using CreditManagementSystem.Common.Extension;
-using CreditManagementSystem.Common.Response;
+using CreditManagementSystem.Common.Extensions;
+using CreditManagementSystem.Common.Responses;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
-using CreditManagementSystem.Data.Model;
+using CreditManagementSystem.Data.Models;
 using CreditManagementSystem.Domain.CommandCredit;
 using CreditManagementSystem.Domain.CommandCredit.Event;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Domain.Handler.CommandCredit
 {
-    public class CreditCUDCommandHandler :
+    public sealed class CreditCUDCommandHandler :
         ICommandHandler<CreditCreateCommand>,
         ICommandHandler<CreditUpdateCommand>,
         ICommandHandler<CreditDeleteCommand>
@@ -35,7 +35,7 @@ namespace CreditManagementSystem.Domain.Handler.CommandCredit
             this._mapper = mapper;
         }
 
-        public async Task<IResponse> HandleAsync(CreditCreateCommand command)
+        public async Task<IResponse> HandleAsync(CreditCreateCommand command, Type resultType)
         {
             var dbCredit = new Credit(this._idGenerator.NewId(), command.ClientID, command.Amount);
 
@@ -45,12 +45,12 @@ namespace CreditManagementSystem.Domain.Handler.CommandCredit
 
             await this._unitOfWork.SaveChangesAsync();
 
-            var result = this._mapper.Map<CreditResultDto>(dbCredit);
+            var result = this._mapper.Map(dbCredit, dbCredit.GetType(), resultType);
 
             return command.OkResponse(result);
         }
 
-        public async Task<IResponse> HandleAsync(CreditUpdateCommand command)
+        public async Task<IResponse> HandleAsync(CreditUpdateCommand command, Type resultType)
         {
             var dbCredit = await this._creditRepository.Find(e => e.ID == command.ID).FirstOrDefaultAsync();
 
@@ -61,12 +61,12 @@ namespace CreditManagementSystem.Domain.Handler.CommandCredit
 
             await this._unitOfWork.SaveChangesAsync();
 
-            var result = this._mapper.Map<CreditResultDto>(dbCredit);
+            var result = this._mapper.Map(dbCredit, dbCredit.GetType(), resultType);
 
             return command.OkResponse(result);
         }
 
-        public async Task<IResponse> HandleAsync(CreditDeleteCommand command)
+        public async Task<IResponse> HandleAsync(CreditDeleteCommand command, Type resultType)
         {
             await this._creditRepository.DeleteByIDAsync(command.ID);
 

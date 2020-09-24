@@ -1,10 +1,10 @@
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.deps.json
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.dll
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.pdb
-C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Client.dll
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.dll
-C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Client.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.dll
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.pdb
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.csprojAssemblyReference.cache
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.AssemblyInfoInputs.cache
 C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.AssemblyInfo.cs
