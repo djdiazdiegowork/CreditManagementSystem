@@ -17,7 +17,7 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("CreditManagementSystem.Data.Model.Credit", b =>
+            modelBuilder.Entity("CreditManagementSystem.Data.Models.Credit", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                     b.ToTable("Credit");
                 });
 
-            modelBuilder.Entity("CreditManagementSystem.Data.Model.CreditStatus", b =>
+            modelBuilder.Entity("CreditManagementSystem.Data.Models.CreditStatus", b =>
                 {
                     b.Property<int>("ID")
                         .HasColumnType("int");
@@ -67,9 +67,9 @@ namespace CreditManagementSystem.Data.EntityFramework.Migrations
                     b.ToTable("CreditStatus");
                 });
 
-            modelBuilder.Entity("CreditManagementSystem.Data.Model.Credit", b =>
+            modelBuilder.Entity("CreditManagementSystem.Data.Models.Credit", b =>
                 {
-                    b.HasOne("CreditManagementSystem.Data.Model.CreditStatus", "CreditStatus")
+                    b.HasOne("CreditManagementSystem.Data.Models.CreditStatus", "CreditStatus")
                         .WithMany()
                         .HasForeignKey("CreditStatusID")
                         .OnDelete(DeleteBehavior.Restrict)

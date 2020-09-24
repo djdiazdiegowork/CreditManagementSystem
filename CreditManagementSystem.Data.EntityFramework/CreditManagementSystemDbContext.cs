@@ -16,7 +16,7 @@ namespace CreditManagementSystem.Data.EntityFramework
             this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public class CreditManagementSystemReadOnlyDbContext : CreditManagementSystemDbContext
+        public sealed class CreditManagementSystemReadOnlyDbContext : CreditManagementSystemDbContext
         {
             public CreditManagementSystemReadOnlyDbContext(
                 IServiceProvider provider,
@@ -26,7 +26,7 @@ namespace CreditManagementSystem.Data.EntityFramework
             }
         }
 
-        public class CreditManagementSystemReadWriteDbContext : CreditManagementSystemDbContext
+        public sealed class CreditManagementSystemReadWriteDbContext : CreditManagementSystemDbContext
         {
             public CreditManagementSystemReadWriteDbContext(
                  IServiceProvider provider,

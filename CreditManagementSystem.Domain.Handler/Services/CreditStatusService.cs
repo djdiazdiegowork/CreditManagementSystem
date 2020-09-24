@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Data.Model;
+using CreditManagementSystem.Data.Models;
 using CreditManagementSystem.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CreditManagementSystem.Domain.Handler.Services
 {
-    public class CreditStatusService : ICreditStatusService
+    public sealed class CreditStatusService : ICreditStatusService
     {
         private readonly IQueryRepository<CreditStatus> _creditStatusQueryRepository;
         private readonly IMapper _mapper;

@@ -1,12 +1,9 @@
-﻿using CreditManagementSystem.Common.Extension;
-using CreditManagementSystem.Common.Response;
+﻿using CreditManagementSystem.Common.Exceptions;
+using CreditManagementSystem.Common.Extensions;
+using CreditManagementSystem.Common.Responses;
 using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 
 namespace CreditManagementSystem.WebApi.Filters
 {

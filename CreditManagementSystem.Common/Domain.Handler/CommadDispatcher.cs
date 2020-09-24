@@ -1,4 +1,4 @@
-﻿using CreditManagementSystem.Common.Response;
+﻿using CreditManagementSystem.Common.Responses;
 using FluentValidation;
 using System;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ namespace CreditManagementSystem.Common.Domain.Handler
             this._provider = provider;
         }
 
-        public async Task<IResponse> DispatchAsync<TCommand>(TCommand command) where TCommand : ICommand
+        public async Task<IResponse> DispatchAsync<TCommand>(TCommand command, Type resultType = null) where TCommand : ICommand
         {
             var type = typeof(TCommand);
 
@@ -31,7 +31,7 @@ namespace CreditManagementSystem.Common.Domain.Handler
 
             var commandHandler = (ICommandHandler<TCommand>)this._provider.GetService(typeof(ICommandHandler<>).MakeGenericType(type));
 
-            return await commandHandler.HandleAsync(command);
+            return await commandHandler.HandleAsync(command, resultType);
         }
     }
 

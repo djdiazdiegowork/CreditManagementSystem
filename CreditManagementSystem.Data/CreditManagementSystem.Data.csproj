@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreditManagementSystem.Client\CreditManagementSystem.Client.csproj" />
     <ProjectReference Include="..\CreditManagementSystem.Common\CreditManagementSystem.Common.csproj" />
   </ItemGroup>
 

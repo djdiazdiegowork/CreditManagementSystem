@@ -291,16 +291,6 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "CreditManagementSystem.Client/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/CreditManagementSystem.Client.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CreditManagementSystem.Client.dll": {}
-        }
-      },
       "CreditManagementSystem.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -321,7 +311,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "CreditManagementSystem.Client": "1.0.0",
           "CreditManagementSystem.Common": "1.0.0"
         },
         "compile": {
@@ -335,8 +324,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "CreditManagementSystem.Client": "1.0.0",
-          "CreditManagementSystem.Common": "1.0.0"
+          "CreditManagementSystem.Common": "1.0.0",
+          "CreditManagementSystem.Data": "1.0.0"
         },
         "compile": {
           "bin/placeholder/CreditManagementSystem.Domain.dll": {}
@@ -955,11 +944,6 @@
         "version.txt"
       ]
     },
-    "CreditManagementSystem.Client/1.0.0": {
-      "type": "project",
-      "path": "../CreditManagementSystem.Client/CreditManagementSystem.Client.csproj",
-      "msbuildProject": "../CreditManagementSystem.Client/CreditManagementSystem.Client.csproj"
-    },
     "CreditManagementSystem.Common/1.0.0": {
       "type": "project",
       "path": "../CreditManagementSystem.Common/CreditManagementSystem.Common.csproj",
@@ -979,7 +963,6 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.0.1",
-      "CreditManagementSystem.Client >= 1.0.0",
       "CreditManagementSystem.Common >= 1.0.0",
       "CreditManagementSystem.Data >= 1.0.0",
       "CreditManagementSystem.Domain >= 1.0.0",
@@ -1017,9 +1000,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Client\\CreditManagementSystem.Client.csproj": {
-              "projectPath": "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Client\\CreditManagementSystem.Client.csproj"
-            },
             "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Common\\CreditManagementSystem.Common.csproj": {
               "projectPath": "C:\\Users\\Dayron\\source\\repos\\CreditManagementSystem\\CreditManagementSystem.Common\\CreditManagementSystem.Common.csproj"
             },

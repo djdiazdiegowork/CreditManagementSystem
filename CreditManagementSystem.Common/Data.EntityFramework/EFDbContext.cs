@@ -1,6 +1,6 @@
 ﻿using CreditManagementSystem.Common.Domain;
-using CreditManagementSystem.Common.Extension;
-using CreditManagementSystem.Common.Response;
+using CreditManagementSystem.Common.Exceptions;
+using CreditManagementSystem.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

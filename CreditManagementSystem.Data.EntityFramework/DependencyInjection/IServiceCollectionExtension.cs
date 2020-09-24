@@ -1,5 +1,5 @@
 ﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Extension;
+using CreditManagementSystem.Common.Extensions;
 using CreditManagementSystem.Common.SequentialGuidGenerator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

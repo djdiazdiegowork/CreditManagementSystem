@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using CreditManagementSystem.Client.Model.Credit;
 using CreditManagementSystem.Common.Domain;
-using CreditManagementSystem.Common.Response;
+using CreditManagementSystem.Common.Responses;
 using CreditManagementSystem.Domain.CommandCredit;
 using CreditManagementSystem.Domain.Services;
+using CreditManagementSystem.WebApi.Models.Credit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
     [ApiController]
     [Produces("application/json")]
     //[Authorize]
-    public class CreditController : ControllerBase
+    public sealed class CreditController : ControllerBase
     {
         private readonly ICommandDispatcher _dispatcher;
         private readonly ICreditService _creditService;
@@ -33,7 +33,25 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         }
 
         /// <summary>
-        /// Get all all Credit.
+        /// Get Credit.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Response<CreditResultDto>>> Get(Guid id)
+        {
+            var result = await this._creditService.Get<CreditResultDto>(id);
+
+            var response = new Response<CreditResultDto>
+            {
+                Body = result,
+                Code = Response.StatusCode
+            };
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get all Credit.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -60,7 +78,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         {
             var command = this._mapper.Map(dto, new CreditCreateCommand());
 
-            var response = await _dispatcher.DispatchAsync(command);
+            var response = await _dispatcher.DispatchAsync(command, typeof(CreditResultDto));
 
             return Ok(response);
         }
@@ -75,7 +93,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         {
             var command = this._mapper.Map(dto, new CreditUpdateCommand());
 
-            var response = await this._dispatcher.DispatchAsync(command);
+            var response = await this._dispatcher.DispatchAsync(command, typeof(CreditResultDto));
 
             return Ok(response);
         }

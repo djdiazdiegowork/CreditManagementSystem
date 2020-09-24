@@ -1,5 +1,5 @@
 ﻿using CreditManagementSystem.Common.Data;
-using CreditManagementSystem.Common.Response;
+using CreditManagementSystem.Common.Responses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

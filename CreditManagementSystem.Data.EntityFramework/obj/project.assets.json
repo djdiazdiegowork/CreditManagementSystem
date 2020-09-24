@@ -1991,16 +1991,6 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "CreditManagementSystem.Client/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/CreditManagementSystem.Client.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CreditManagementSystem.Client.dll": {}
-        }
-      },
       "CreditManagementSystem.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -2021,7 +2011,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "CreditManagementSystem.Client": "1.0.0",
           "CreditManagementSystem.Common": "1.0.0"
         },
         "compile": {
@@ -6748,11 +6737,6 @@
         "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
-    },
-    "CreditManagementSystem.Client/1.0.0": {
-      "type": "project",
-      "path": "../CreditManagementSystem.Client/CreditManagementSystem.Client.csproj",
-      "msbuildProject": "../CreditManagementSystem.Client/CreditManagementSystem.Client.csproj"
     },
     "CreditManagementSystem.Common/1.0.0": {
       "type": "project",

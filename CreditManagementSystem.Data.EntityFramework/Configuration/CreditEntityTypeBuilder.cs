@@ -1,5 +1,5 @@
 ﻿using CreditManagementSystem.Common;
-using CreditManagementSystem.Data.Model;
+using CreditManagementSystem.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
