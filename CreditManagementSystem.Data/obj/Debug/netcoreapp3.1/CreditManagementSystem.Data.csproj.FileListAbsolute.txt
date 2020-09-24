@@ -1,0 +1,12 @@
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.deps.json
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.csprojAssemblyReference.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.AssemblyInfoInputs.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.AssemblyInfo.cs
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.csproj.CoreCompileInputs.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.csproj.CopyComplete
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Data\obj\Debug\netcoreapp3.1\CreditManagementSystem.Data.pdb

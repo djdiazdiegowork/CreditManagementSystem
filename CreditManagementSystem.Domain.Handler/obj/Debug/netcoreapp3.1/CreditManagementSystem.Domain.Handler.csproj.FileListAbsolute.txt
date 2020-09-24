@@ -1,0 +1,16 @@
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.deps.json
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Data.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\bin\Debug\netcoreapp3.1\CreditManagementSystem.Domain.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.csprojAssemblyReference.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.AssemblyInfoInputs.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.AssemblyInfo.cs
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.csproj.CoreCompileInputs.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.csproj.CopyComplete
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Domain.Handler\obj\Debug\netcoreapp3.1\CreditManagementSystem.Domain.Handler.pdb

@@ -1,0 +1,9 @@
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.deps.json
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\bin\Debug\netcoreapp3.1\CreditManagementSystem.Common.pdb
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\obj\Debug\netcoreapp3.1\CreditManagementSystem.Common.csprojAssemblyReference.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\obj\Debug\netcoreapp3.1\CreditManagementSystem.Common.AssemblyInfoInputs.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\obj\Debug\netcoreapp3.1\CreditManagementSystem.Common.AssemblyInfo.cs
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\obj\Debug\netcoreapp3.1\CreditManagementSystem.Common.csproj.CoreCompileInputs.cache
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\obj\Debug\netcoreapp3.1\CreditManagementSystem.Common.dll
+C:\Users\Dayron\source\repos\CreditManagementSystem\CreditManagementSystem.Common\obj\Debug\netcoreapp3.1\CreditManagementSystem.Common.pdb

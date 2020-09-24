@@ -15,11 +15,11 @@ namespace CreditManagementSystem.Common.Responses
             this.UIText = uiText;
         }
 
-        public int Code { get; set; }
+        public int Code { get; private set; }
 
-        public string UIText { get; set; }
+        public string UIText { get; private set; }
 
-        public T Body { get; set; }
+        public T Body { get; private set; }
 
         public bool IsSuccess
         {

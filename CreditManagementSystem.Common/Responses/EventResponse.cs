@@ -16,11 +16,11 @@ namespace CreditManagementSystem.Common.Responses
             this.Body = body;
         }
 
-        public int Code { get; protected set; }
+        public int Code { get; private set; }
 
-        public IEvent Event { get; protected set; }
+        public IEvent Event { get; private set; }
 
-        public T Body { get; protected set; }
+        public T Body { get; private set; }
 
         public bool IsSuccess
         {

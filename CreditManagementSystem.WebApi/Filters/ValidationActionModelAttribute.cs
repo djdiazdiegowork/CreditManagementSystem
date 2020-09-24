@@ -23,12 +23,10 @@ namespace CreditManagementSystem.WebApi.Filters
         {
             if (context.Result is BadRequestObjectResult result && result.Value is ValidationProblemDetails validationProblem)
             {
-                var response = new Response<object>
-                {
-                    Code = result.StatusCode.Value,
-                    Body = validationProblem.Errors,
-                    UIText = "Invalid Argument"
-                };
+                var response = new Response<object>(
+                    result.StatusCode.Value,
+                    validationProblem.Errors,
+                    "Invalid Argument");
 
                 context.Result = new BadRequestObjectResult(response);
             }

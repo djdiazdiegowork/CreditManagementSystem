@@ -41,11 +41,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         {
             var result = await this._creditService.Get<CreditResultDto>(id);
 
-            var response = new Response<CreditResultDto>
-            {
-                Body = result,
-                Code = Response.StatusCode
-            };
+            var response = new Response<CreditResultDto>(Response.StatusCode, result, null);
 
             return Ok(response);
         }
@@ -59,11 +55,7 @@ namespace CreditManagementSystem.WebApi.Controllers.V1
         {
             var result = await this._creditService.GetAll<CreditResultDto>();
 
-            var response = new Response<IEnumerable<CreditResultDto>>
-            {
-                Body = result,
-                Code = Response.StatusCode
-            };
+            var response = new Response<IEnumerable<CreditResultDto>>(Response.StatusCode, result, null);
 
             return Ok(response);
         }
