@@ -7,12 +7,12 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
 {
     public abstract class Seed<TEntity> : ISeed<TEntity> where TEntity : class, IEnumeration
     {
-        public virtual async Task SeedAsync(IRepository<TEntity> repository, IUnitOfWork unitOfWork)
+        public virtual async Task SeedAsync(DbContext dbContext)
         {
             var entities = typeof(TEntity).GetFields(BindingFlags.Public | BindingFlags.Static).Select(f => (TEntity)f.GetValue(f)).ToArray();
             var propertiesName = typeof(TEntity).GetProperties().Where(p => p.Name != nameof(IEntity.ID)).Select(p => p.Name).ToArray();
 
-            var dbEntities = await repository.FindAll().ToArrayAsync();
+            var dbEntities = await dbContext.Set<TEntity>().ToArrayAsync();
 
             var pairs = (from dbEntity in dbEntities
                          let entity = entities.FirstOrDefault(entity => entity.ID.Equals(dbEntity.ID))
@@ -31,20 +31,20 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
                         dbEntity.GetType().GetProperty(propertyName).SetValue(dbEntity, value);
                     }
 
-                    repository.Update(dbEntity);
+                    dbContext.Update(dbEntity);
                 }
                 else
                 {
-                    repository.Delete(dbEntity);
+                    dbContext.Remove(dbEntity);
                 }
             }
 
             foreach (var entity in entities.Where(entity => !dbEntities.Any(dbEntity => dbEntity.ID.Equals(entity.ID))))
             {
-                repository.Add(entity);
+                dbContext.Add(entity);
             }
 
-            await unitOfWork.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
     }
 

@@ -17,7 +17,8 @@ namespace CreditManagementSystem.Common.Extension
 
             foreach (var type in types)
             {
-                CreateRepositories(services, type, typeof(IRepository<>), typeof(Repository<,>), readWriteDbContextType);
+                if (!type.GetInterfaces().Contains(typeof(IEnumeration)))
+                    CreateRepositories(services, type, typeof(IRepository<>), typeof(Repository<,>), readWriteDbContextType);
                 CreateRepositories(services, type, typeof(IQueryRepository<>), typeof(QueryRepository<,>), readOnlyDbContextType);
             }
         }

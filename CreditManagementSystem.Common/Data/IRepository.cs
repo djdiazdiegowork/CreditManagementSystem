@@ -26,7 +26,7 @@ namespace CreditManagementSystem.Common.Data
 
         EntityState Delete(TEntity entity);
 
-        void RemoveRange(params TEntity[] entities);
+        void DeleteRange(params TEntity[] entities);
 
         IQueryable<TEntity> FindAll(params string[] include);
 

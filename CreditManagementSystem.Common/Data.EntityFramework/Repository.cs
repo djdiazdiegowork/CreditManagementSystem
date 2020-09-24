@@ -57,7 +57,7 @@ namespace CreditManagementSystem.Common.Data.EntityFramework
             return (EntityState)this._context.Set<TEntity>().Remove(entity).State;
         }
 
-        public void RemoveRange(params TEntity[] entities)
+        public void DeleteRange(params TEntity[] entities)
         {
             this._context.Set<TEntity>().RemoveRange(entities);
         }
